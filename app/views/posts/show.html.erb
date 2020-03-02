@@ -1,0 +1,25 @@
+<div class="max-w-4xl m-auto">
+  <%= link_to @post do %>
+    <% @post.feature_image.each do |image| %>
+      <%= image_tag image %>
+    <% end %>
+    
+  <% end %>
+
+  <div class="p-6">
+    <h1 class="text-2xl font-bold"><%= @post.title %></h1>
+
+    <div class="leading-normal text-lg">
+      <%= @post.body %>
+    </div>
+
+    <% if user_signed_in? && current_user.id == @post.user_id %>
+      <div class="my-4">
+        <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-default" %>
+        <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+    </div>
+    <% end %>
+  </div>
+
+    <%= debug @post.feature_image %>
+</div>
